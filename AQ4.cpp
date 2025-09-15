@@ -11,6 +11,7 @@ int main() {
 
     cout << "Enter stream (lowercase letters only): ";
     cin >> stream;
+    
 
     for (int i = 0; stream[i] != '\0'; i++) {
         char c = stream[i];
