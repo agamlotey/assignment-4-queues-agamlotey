@@ -4,7 +4,7 @@ using namespace std;
 #define MAX 50
 int q[MAX], front = -1, rear = -1;
 
-void insertQ(int val) {
+void insertQ(int val){
     if (rear == MAX - 1) { cout << "Queue Overflow\n"; return; }
     if (front == -1) front = 0;
     q[++rear] = val;
