@@ -4,7 +4,7 @@ using namespace std;
 #define MAX 5
 int cq[MAX], front = -1, rear = -1;
 
-void insertCQ(int val) {
+void insertCQ(int val){
     if ((front == 0 && rear == MAX - 1) || (rear + 1) % MAX == front) {
         cout << "Circular Queue Overflow\n"; return;
     }
