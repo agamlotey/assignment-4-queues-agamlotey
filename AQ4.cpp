@@ -1,27 +1,26 @@
-#include <stdio.h>
-#include <string.h>
+#include <iostream>
+using namespace std;
+
+#define MAX 50
 
 int main() {
-    char str[100];
-    int freq[256] = {0};
-    int i, j;
+    char stream[MAX];
+    int freq[26] = {0};
+    char q[MAX];
+    int f = 0, r = -1;
 
-    printf("Enter string: ");
-    scanf("%s", str);
+    cout << "Enter stream (lowercase letters only): ";
+    cin >> stream;
 
-    for (i = 0; i < strlen(str); i++) {
-        freq[(int)str[i]]++;
+    for (int i = 0; stream[i] != '\0'; i++) {
+        char c = stream[i];
+        freq[c - 'a']++;
+        q[++r] = c;
 
-        int found = 0;
-        for (j = 0; j <= i; j++) {
-            if (freq[(int)str[j]] == 1) {
-                printf("%c ", str[j]);
-                found = 1;
-                break;
-            }
-        }
-        if (!found) printf("-1 ");
+        while (f <= r && freq[q[f] - 'a'] > 1) f++;
+
+        if (f > r) cout << "-1 ";
+        else cout << q[f] << " ";
     }
-    printf("\n");
     return 0;
 }
