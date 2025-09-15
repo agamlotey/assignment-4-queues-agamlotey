@@ -1,61 +1,36 @@
-#include <stdio.h>
+#include <iostream>
+using namespace std;
+
 #define MAX 50
+int q[MAX], front = -1, rear = -1;
 
-int queue[MAX];
-int front = -1, rear = -1;
-int isEmpty(){
-    return (front == -1);
-}
-int isFull(){
-    return (rear==MAX-1);
-}
-void enqueue(int val) {
-    if(isFull()){
-        printf("Queue is full!\n");
-        return;
-    }
+void insertQ(int val) {
+    if (rear == MAX - 1) { cout << "Queue Overflow\n"; return; }
     if (front == -1) front = 0;
-    queue[++rear] = val;
+    q[++rear] = val;
 }
 
-void dequeue() {
-    if(isEmpty()){
-        printf("Queue is empty!\n");
-        return;
-    }
-    printf("Dequeued: %d\n", queue[front]);
-    if (front == rear) front = rear = -1;
-    else front++;
+void deleteQ() {
+    if (front == -1 || front > rear) { cout << "Queue Underflow\n"; return; }
+    cout << "Deleted: " << q[front++] << endl;
 }
 
-void display(){
-    if(isEmpty()){
-        printf("Queue is empty!\n");
-        return;
-    }
-    printf("Queue: ");
-    for (int i = front; i <= rear; i++)
-        printf("%d ", queue[i]);
-    printf("\n");
-}
-
-void peek() {
-    if (isEmpty()) printf("Queue empty!\n");
-    else printf("Front element: %d\n", queue[front]);
+void displayQ() {
+    if (front == -1 || front > rear) { cout << "Queue Empty\n"; return; }
+    cout << "Queue: ";
+    for (int i = front; i <= rear; i++) cout << q[i] << " ";
+    cout << endl;
 }
 
 int main() {
-    int choice, val;
+    int ch, val;
     while (1) {
-        printf("\n1.Enqueue 2.Dequeue 3.Display 4.Peek 5.Exit\n");
-        scanf("%d", &choice);
-        switch (choice) {
-            case 1: printf("Enter value: "); scanf("%d", &val); enqueue(val); break;
-            case 2: dequeue(); break;
-            case 3: display(); break;
-            case 4: peek(); break;
-            case 5: return 0;
-            default: printf("Invalid choice\n");
-        }
+        cout << "\n1.Insert 2.Delete 3.Display 4.Exit\n";
+        cin >> ch;
+        if (ch == 1) { cout << "Enter value: "; cin >> val; insertQ(val); }
+        else if (ch == 2) deleteQ();
+        else if (ch == 3) displayQ();
+        else break;
     }
+    return 0;
 }
