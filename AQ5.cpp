@@ -8,7 +8,7 @@ int f1=0, r1=-1, f2=0, r2=-1;
 
 void pushTwoQ(int val) { q1[++r1] = val; }
 
-void popTwoQ() {
+void popTwoQ(){
     if (f1 > r1) { cout << "Stack empty\n"; return; }
     while (f1 < r1) q2[++r2] = q1[f1++];
     cout << "Popped (Two Queues): " << q1[f1++] << endl;
