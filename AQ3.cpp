@@ -1,18 +1,24 @@
-#include <stdio.h>
+#include <iostream>
+using namespace std;
+
+#define MAX 50
 
 int main() {
-    int n;
-    printf("Enter even number of elements: ");
-    scanf("%d", &n);
+    int q[MAX], n;
+    cout << "Enter even number of elements: ";
+    cin >> n;
 
-    int arr[n];
-    printf("Enter elements: ");
-    for (int i = 0; i < n; i++) scanf("%d", &arr[i]);
+    for (int i = 0; i < n; i++) cin >> q[i];
 
-    printf("Output: ");
+    int first[MAX], second[MAX];
+    int k = 0;
+    for (int i = 0; i < n/2; i++) first[i] = q[i];
+    for (int i = n/2; i < n; i++) second[i - n/2] = q[i];
+
+    cout << "Interleaved Queue: ";
     for (int i = 0; i < n/2; i++) {
-        printf("%d %d ", arr[i], arr[i + n/2]);
+        cout << first[i] << " " << second[i] << " ";
     }
-    printf("\n");
+    cout << endl;
     return 0;
 }
